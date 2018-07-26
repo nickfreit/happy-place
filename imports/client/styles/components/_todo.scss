@@ -1,0 +1,40 @@
+.todo {
+  border-left: $item-border-width solid transparent;
+  cursor: pointer;
+  padding: $space;
+  transition: background-color .1s ease, border-left .1s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    width: 85%;
+    word-wrap: break-word;
+  }
+
+  button {
+    display: none;
+    width: 15%;
+  }
+}
+
+.todo:hover {
+  background-color: $light-gray;
+  border-left: $item-border-width solid $gray;
+
+  button {
+    display: inline-block;
+  }
+  button:hover {
+    background-color: $gray;
+  }
+}
+
+.todo--unfinished, .todo-unfinished:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.todo--finished, .todo-finished:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+
+}

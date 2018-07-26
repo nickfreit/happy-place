@@ -9,9 +9,11 @@ export class ToDoListItem extends React.Component {
 
     let itemClass;
     if (this.props.todo.done) {
-      itemClass = 'item item--finished';
+      itemClass = 'todo todo--finished';
+    } else if (this.props.day === 'today' || this.props.day === 'yesterday') {
+      itemClass = 'todo todo--unfinished';
     } else {
-      itemClass = 'item item--unfinished';
+      itemClass = 'todo';
     }
 
     let jsxItem;
@@ -24,7 +26,7 @@ export class ToDoListItem extends React.Component {
           <p>{this.props.todo.description}</p>
           <button
             onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
-            className='button button--secondary'>
+            className='button button--pill'>
             x
           </button>
         </div>
@@ -38,7 +40,7 @@ export class ToDoListItem extends React.Component {
           <p>{this.props.todo.description}</p>
           <button
             onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
-            className='button button--secondary'>
+            className='button button--pill'>
             x
           </button>
         </div>
