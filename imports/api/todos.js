@@ -36,6 +36,7 @@ Meteor.methods({
       description,
       dueAt: moment(dueAt).valueOf(),
       userId: this.userId,
+      done: false,
       createdAt: moment().valueOf()
     });
   },
@@ -71,6 +72,10 @@ Meteor.methods({
       },
       dueAt: {
         type: String,
+        optional: true
+      },
+      done: {
+        type: Boolean,
         optional: true
       }
     }).validate({

@@ -26,7 +26,7 @@ export class ToDoList extends React.Component {
 
       return (
         <div className='item-list'>
-          {filteredTodos.map((todo) => <ToDoListItem key={todo._id} todo={todo}/>)}
+          {filteredTodos.map((todo) => <ToDoListItem key={todo._id} day={this.props.day} todo={todo}/>)}
         </div>
       );
   }
