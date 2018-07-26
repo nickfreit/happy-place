@@ -12,7 +12,7 @@ export class AddToDo extends React.Component {
     }
   }
   handleModalClose() {
-    this.setState({isOpen: false, description: '', error: ''});
+    this.setState({isOpen: false, description: '', error: ''} );
   }
   handleModalOpen() {
     this.refs.description.focus();
