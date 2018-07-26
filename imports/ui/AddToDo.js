@@ -1,6 +1,8 @@
 import React from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
 import Modal from 'react-modal';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 export class AddToDo extends React.Component {
   constructor(props) {
@@ -8,11 +10,12 @@ export class AddToDo extends React.Component {
     this.state = {
       isOpen: false,
       description: '',
+      dueAt: '',
       error: ''
     }
   }
   handleModalClose() {
-    this.setState({isOpen: false, description: '', error: ''} );
+    this.setState({isOpen: false, description: '', dueAt: '', error: ''} );
   }
   handleModalOpen() {
     this.refs.description.focus();
@@ -24,10 +27,11 @@ export class AddToDo extends React.Component {
   }
   onModalSubmit(e) {
     const description = this.state.description;
+    const dueAt = this.state.dueAt;
 
     e.preventDefault();
 
-    Meteor.call('todos.insert', description, (err, res) => {
+    Meteor.call('todos.insert', description, dueAt, (err, res) => {
       if (!err) {
         this.handleModalClose();
       } else {
@@ -57,6 +61,9 @@ export class AddToDo extends React.Component {
               value={this.state.description}
               onChange={this.onModalChange.bind(this)}
             />
+            <div>
+              <DayPickerInput onDayChange={day => this.setState({dueAt: day})} />
+            </div>
             <button className='button'>Add To Do</button>
             <button type='button' className='button button--secondary' onClick={this.handleModalClose.bind(this)}>
               Cancel

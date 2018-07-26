@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'todos.insert'(description) {
+  'todos.insert'(description, dueAt) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -26,7 +26,7 @@ Meteor.methods({
 
     return Todos.insert({
       description,
-      dueAt: '',
+      dueAt,
       userId: this.userId,
       createdAt: moment().valueOf()
     });
