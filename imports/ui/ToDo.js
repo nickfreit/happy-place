@@ -2,6 +2,7 @@ import React from 'react';
 
 import PrivateHeader from './PrivateHeader';
 import AddToDo from './AddToDo';
+import ToDoList from './ToDoList';
 
 export default class ToDo extends React.Component {
   render() {
@@ -9,6 +10,9 @@ export default class ToDo extends React.Component {
       <div>
         <PrivateHeader title="To Do"/>
         <AddToDo />
+        <ToDoList />
+        <ToDoList />
+        <ToDoList />
       </div>
     );
   }
