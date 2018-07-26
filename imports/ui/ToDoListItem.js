@@ -9,25 +9,44 @@ export class ToDoListItem extends React.Component {
     let jsxItem;
     if (this.props.day === 'today') {
       jsxItem = (
-        <label className='checkbox'>
-          <input
-            className='checkbox__box'
-            type='checkbox'
-            onChange={(e) => {
-              this.props.meteorCall('todos.update', this.props.todo._id, {done: e.target.checked});
-            }}
-          />
-          {this.props.todo.description}
-        </label>
+        <div>
+          <label className='checkbox'>
+            <input
+              className='checkbox__box'
+              type='checkbox'
+              onChange={(e) => {
+                this.props.meteorCall('todos.update', this.props.todo._id, {done: e.target.checked});
+              }}
+            />
+            {this.props.todo.description}
+          </label>
+          <button
+            onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
+            className='button button--secondary'>
+            x
+          </button>
+        </div>
+      );
+    } else if (this.props.day === 'tomorrow') {
+      jsxItem = (
+        <div>
+          <p>{this.props.todo.description}</p>
+          <button
+            onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
+            className='button button--secondary'>
+            x
+          </button>
+        </div>
       );
     } else {
       jsxItem = (
-        <p>{this.props.todo.description}</p>
+        <div>
+          <p>{this.props.todo.description}</p>
+        </div>
       );
     }
     return (
       <div>
-        <h5>{this.props.day.charAt(0).toUpperCase() + this.props.day.slice(1)}</h5>
         {jsxItem}
       </div>
     );
