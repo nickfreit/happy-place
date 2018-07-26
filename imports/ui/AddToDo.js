@@ -7,18 +7,19 @@ export class AddToDo extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      description: ''
+      description: '',
+      error: ''
     }
   }
   handleModalClose() {
-    this.setState({isOpen: false, description: ''});
+    this.setState({isOpen: false, description: '', error: ''});
   }
   handleModalOpen() {
     this.refs.description.focus();
   }
   onModalChange(e) {
     this.setState({
-      description: e.target.value
+      description: e.target.value,
     });
   }
   onModalSubmit(e) {
@@ -30,7 +31,7 @@ export class AddToDo extends React.Component {
       if (!err) {
         this.handleModalClose();
       } else {
-      //  this.setState({error: err.reason});
+        this.setState({error: err.reason});
       }
     });
   }
@@ -47,6 +48,7 @@ export class AddToDo extends React.Component {
           onRequestClose={this.handleModalClose.bind(this)}
           className='boxed-view__box'>
           <h1>Add To Do</h1>
+          {this.state.error ? <p>{this.state.error}</p> : null}
           <form className='boxed-view__form' onSubmit={this.onModalSubmit.bind(this)}>
             <input
               type='text'

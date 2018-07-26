@@ -17,6 +17,13 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
+    new SimpleSchema({
+      description: {
+        type: String,
+        min: 1
+      }
+    }).validate({ description });
+
     return Todos.insert({
       description,
       dueAt: '',
