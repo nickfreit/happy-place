@@ -50,7 +50,8 @@ export class AddToDo extends React.Component {
           contentLabel="Add To Do"
           onAfterOpen={this.handleModalOpen.bind(this)}
           onRequestClose={this.handleModalClose.bind(this)}
-          className='boxed-view__box'>
+          className='boxed-view__box'
+          appElement={document.getElementById('app')}>
           <h1>Add To Do</h1>
           {this.state.error ? <p>{this.state.error}</p> : null}
           <form className='boxed-view__form' onSubmit={this.onModalSubmit.bind(this)}>

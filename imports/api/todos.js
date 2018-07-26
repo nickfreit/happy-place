@@ -21,12 +21,20 @@ Meteor.methods({
       description: {
         type: String,
         min: 1
+      // },
+      // dueAt: {
+      //   type: Date,
+      //   custom: function () {
+      //     if (!moment().isBefore(this.value)) {
+      //       return 'badDate';
+      //     }
+      //   }
       }
-    }).validate({ description });
+    }).validate({ description/*, dueAt*/});
 
     return Todos.insert({
       description,
-      dueAt,
+      dueAt: moment(dueAt).valueOf(),
       userId: this.userId,
       createdAt: moment().valueOf()
     });

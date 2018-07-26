@@ -21,3 +21,4 @@ accounts-password
 session
 fourseven:scss
 react-meteor-data
+percolate:synced-cron
