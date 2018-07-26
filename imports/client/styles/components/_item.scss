@@ -18,7 +18,7 @@
   border-left: $item-border-width solid transparent;
   cursor: pointer;
   padding: $space;
-  transition: background-color .3s ease, border-left .3s ease;
+  transition: background-color .1s ease, border-left .1s ease;
 }
 
 .item:hover {
@@ -51,4 +51,16 @@
   font-style: italic;
   padding: $space;
   text-align: center;
+}
+
+.item--unfinished, .item-unfinished:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.item--finished, .item-finished:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
 }

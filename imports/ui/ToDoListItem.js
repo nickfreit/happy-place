@@ -6,20 +6,22 @@ import {createContainer} from 'meteor/react-meteor-data';
 
 export class ToDoListItem extends React.Component {
   render() {
+
+    let itemClass;
+    if (this.props.todo.done) {
+      itemClass = 'item item--finished';
+    } else {
+      itemClass = 'item item--unfinished';
+    }
+
     let jsxItem;
     if (this.props.day === 'today') {
       jsxItem = (
-        <div>
-          <label className='checkbox'>
-            <input
-              className='checkbox__box'
-              type='checkbox'
-              onChange={(e) => {
-                this.props.meteorCall('todos.update', this.props.todo._id, {done: e.target.checked});
-              }}
-            />
-            {this.props.todo.description}
-          </label>
+        <div className={itemClass} onClick={() => {
+          this.props.meteorCall('todos.update', this.props.todo._id,
+          { done: !this.props.todo.done })
+        }}>
+          <p>{this.props.todo.description}</p>
           <button
             onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
             className='button button--secondary'>
@@ -29,7 +31,10 @@ export class ToDoListItem extends React.Component {
       );
     } else if (this.props.day === 'tomorrow') {
       jsxItem = (
-        <div>
+        <div className={itemClass} onClick={() => {
+          this.props.meteorCall('todos.update', this.props.todo._id,
+          { done: !this.props.todo.done })
+        }}>
           <p>{this.props.todo.description}</p>
           <button
             onClick={() => this.props.meteorCall('todos.remove', this.props.todo._id)}
@@ -40,16 +45,14 @@ export class ToDoListItem extends React.Component {
       );
     } else {
       jsxItem = (
-        <div>
+        <div className={itemClass}>
           <p>{this.props.todo.description}</p>
         </div>
       );
     }
-    return (
-      <div>
-        {jsxItem}
-      </div>
-    );
+
+
+    return jsxItem;
   };
 };
 

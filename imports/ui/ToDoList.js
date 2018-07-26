@@ -23,7 +23,6 @@ export class ToDoList extends React.Component {
       });
     }
 
-
       return (
         <div className='item-list'>
           <h5>{this.props.day.charAt(0).toUpperCase() + this.props.day.slice(1)}</h5>

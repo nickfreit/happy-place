@@ -44,5 +44,6 @@ $item-border-width: 4px;
 
 // Page Content
 $page-content-sidebar-width: 30rem;
+$page-content-thirds-width: $site-max-width / 3;
 $page-content-main-width: calc(#{$site-max-width} - #{$page-content-sidebar-width});
 $page-content-height: calc(98vh - #{$header-height});

@@ -10,9 +10,17 @@ export default class ToDo extends React.Component {
       <div>
         <PrivateHeader title="To Do"/>
         <AddToDo />
-        <ToDoList day="yesterday"/>
-        <ToDoList day="today"/>
-        <ToDoList day="tomorrow"/>
+        <div className='page-content'>
+          <div className='page-content__list'>
+            <ToDoList day="yesterday"/>
+          </div>
+          <div className='page-content__list'>
+            <ToDoList day="today"/>
+          </div>
+          <div className='page-content__list'>
+            <ToDoList day="tomorrow"/>
+          </div>
+        </div>
       </div>
     );
   }

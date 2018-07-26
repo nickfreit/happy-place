@@ -21,3 +21,11 @@
   display: flex;
   width: $page-content-main-width;
 }
+
+.page-content__list {
+  display: flex;
+  padding-right: $space;
+  padding-left: $space;
+  position: static;
+  width: $page-content-thirds-width;
+}
