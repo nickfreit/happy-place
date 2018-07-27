@@ -1,8 +1,7 @@
 import React from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
 import Modal from 'react-modal';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+import DayPicker from 'react-day-picker/DayPicker';
 
 export class AddToDo extends React.Component {
   constructor(props) {
@@ -41,9 +40,9 @@ export class AddToDo extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='page-content__button'>
         <button className='button' onClick={() => this.setState({isOpen: true})}>
-          New To Do
+          + To Do
         </button>
         <Modal
           isOpen={this.state.isOpen}
@@ -51,6 +50,7 @@ export class AddToDo extends React.Component {
           onAfterOpen={this.handleModalOpen.bind(this)}
           onRequestClose={this.handleModalClose.bind(this)}
           className='boxed-view__box'
+          overlayClassName='boxed-view boxed-view--modal'
           appElement={document.getElementById('app')}>
           <h1>Add To Do</h1>
           {this.state.error ? <p>{this.state.error}</p> : null}
@@ -62,9 +62,7 @@ export class AddToDo extends React.Component {
               value={this.state.description}
               onChange={this.onModalChange.bind(this)}
             />
-            <div>
-              <DayPickerInput onDayChange={day => this.setState({dueAt: day})} />
-            </div>
+            <DayPicker onDayChange={day => this.setState({dueAt: day})} />
             <button className='button'>Add To Do</button>
             <button type='button' className='button button--secondary' onClick={this.handleModalClose.bind(this)}>
               Cancel

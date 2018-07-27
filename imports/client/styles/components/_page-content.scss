@@ -27,5 +27,11 @@
   padding-right: $space;
   padding-left: $space;
   position: static;
-  width: $page-content-thirds-width;
+  width: $page-content-list-width;
+}
+
+.page-content__button {
+  padding-right: $space;
+  padding-left: $space;
+  width: $page-content-button-width;
 }

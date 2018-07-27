@@ -9,8 +9,8 @@ export default class ToDo extends React.Component {
     return (
       <div>
         <PrivateHeader title="To Do"/>
-        <AddToDo />
         <div className='page-content'>
+          <AddToDo />
           <div className='page-content__list'>
             <ToDoList day="yesterday"/>
           </div>

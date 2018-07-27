@@ -1,5 +1,6 @@
 .todo {
   border-left: $item-border-width solid transparent;
+  border-bottom: 1px solid $gray;
   cursor: pointer;
   padding: $space;
   transition: background-color .1s ease, border-left .1s ease;
@@ -37,4 +38,13 @@
 .todo--finished, .todo-finished:hover {
   background-color: rgba(0, 255, 0, 0.1);
 
+}
+
+.todo__title {
+  border: none;
+  border-bottom: 1px solid $gray;
+  font-size: $large-font-size;
+  margin-bottom: 0;
+  outline: none;
+  padding: $input-spacing;
 }

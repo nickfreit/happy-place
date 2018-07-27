@@ -19,7 +19,7 @@ Meteor.startup(() => {
       Todos.remove( {dueAt: {$lt: moment().subtract(3, 'day').valueOf()} } );
     }
   });
-
+  
   SyncedCron.start();
 
 });

@@ -11,7 +11,7 @@ $body-default-font-family: Helvetica, Arial, sans-serif;
 // Spacing
 $space: 1.4rem;
 $large-space: 2.8rem;
-$site-max-width: 100rem;
+$site-max-width: 140rem;
 
 // Font sizes
 $base-font-size: 1.4rem;
@@ -44,6 +44,7 @@ $item-border-width: 4px;
 
 // Page Content
 $page-content-sidebar-width: 30rem;
-$page-content-thirds-width: $site-max-width / 3;
+$page-content-button-width: 12rem;
+$page-content-list-width: ($site-max-width - $page-content-button-width) / 3 ;
 $page-content-main-width: calc(#{$site-max-width} - #{$page-content-sidebar-width});
 $page-content-height: calc(98vh - #{$header-height});
