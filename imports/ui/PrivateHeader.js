@@ -10,6 +10,7 @@ const PrivateHeader = (props) => {
         <Link className='button button--link-text' to='/'>Home</Link>
         <Link className='button button--link-text' to='/journal'>Journal</Link>
         <Link className='button button--link-text' to='/todo'>To Do</Link>
+        <Link className='button button--link-text' to='/goals'>Goals</Link>
         <button className='button button--link-text' onClick={() => Accounts.logout()}>
           Logout
         </button>

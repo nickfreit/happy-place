@@ -8,9 +8,10 @@ import NotFound from '../ui/NotFound';
 import Login from '../ui/Login';
 import Journal from '../ui/Journal';
 import ToDo from '../ui/ToDo';
+import Goals from '../ui/Goals';
 
 const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/home', '/journal', '/todo'];
+const authenticatedPages = ['/home', '/journal', '/todo', '/goals'];
 
 const onEnterPublicPage = () => {
   if (Meteor.userId()) {
@@ -41,6 +42,7 @@ export const routes = (
     <Route path="/home" component={Home} onEnter={onEnterPrivatePage}/>
     <Route path="/journal" component={Journal} onEnter={onEnterPrivatePage}/>
     <Route path="/todo" component={ToDo} onEnter={onEnterPrivatePage}/>
+    <Route path="/goals" component={Goals} onEnter={onEnterPrivatePage}/>
     <Route path="/" component={Login} onEnter={onEnterPublicPage}/>
     <Route path="*" component={NotFound}/>
   </Router>

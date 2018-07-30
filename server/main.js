@@ -6,6 +6,7 @@ import moment from 'moment';
 import '../imports/api/entries';
 import '../imports/api/users';
 import {Todos} from '../imports/api/todos';
+import '../imports/api/goals';
 import '../imports/startup/simple-schema-configuration';
 
 Meteor.startup(() => {
@@ -19,7 +20,7 @@ Meteor.startup(() => {
       Todos.remove( {dueAt: {$lt: moment().subtract(3, 'day').valueOf()} } );
     }
   });
-  
+
   SyncedCron.start();
 
 });
