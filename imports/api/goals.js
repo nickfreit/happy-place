@@ -54,6 +54,13 @@ Meteor.methods({
     }).validate({_id});
 
     Goals.remove({_id, userId: this.userId});
-  }
+  },
 
+  'goals.update'(_id, task) {
+    Goals.update({_id, userId: this.userId}, {
+      $set: {
+        task
+      }
+    });
+  }
 });

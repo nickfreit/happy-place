@@ -21,7 +21,7 @@ export class AddGoal extends React.Component {
   }
   onDescriptionChange(e) {
     this.setState({
-      description: e.target.value,
+      description: e.target.value
     });
   }
   onDurationChange(e) {
@@ -72,19 +72,21 @@ export class AddGoal extends React.Component {
               value={this.state.description}
               onChange={this.onDescriptionChange.bind(this)}
             />
-            <input
-              type='number'
-              placeholder='Duration'
-              ref='duration'
-              value={this.state.duration}
-              onChange={this.onDurationChange.bind(this)}
-            />
-            <select value={this.state.durationType} onChange={this.onDurationTypeChange.bind(this)}>
-              <option value='days'>Days</option>
-              <option value='weeks'>Weeks</option>
-              <option value='months'>Months</option>
-              <option value='years'>Years</option>
-            </select>
+            <div>
+              <input
+                type='number'
+                placeholder='Duration'
+                ref='duration'
+                value={this.state.duration}
+                onChange={this.onDurationChange.bind(this)}
+              />
+              <select value={this.state.durationType} onChange={this.onDurationTypeChange.bind(this)}>
+                <option value='days'>Days</option>
+                <option value='weeks'>Weeks</option>
+                <option value='months'>Months</option>
+                <option value='years'>Years</option>
+              </select>
+            </div>
             <button className='button'>Add Goal</button>
             <button type='button' className='button button--secondary' onClick={this.handleModalClose.bind(this)}>
               Cancel
