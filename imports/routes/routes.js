@@ -10,7 +10,7 @@ import Journal from '../ui/Journal';
 import ToDo from '../ui/ToDo';
 
 const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/home'];
+const authenticatedPages = ['/home', '/journal', '/todo'];
 
 const onEnterPublicPage = () => {
   if (Meteor.userId()) {
