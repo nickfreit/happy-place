@@ -62,7 +62,7 @@ export class AddToDo extends React.Component {
               value={this.state.description}
               onChange={this.onModalChange.bind(this)}
             />
-            <DayPicker onDayClick={day => this.setState({dueAt: day})} />
+            <DayPicker selectedDays = {this.state.dueAt} onDayClick={day => this.setState({dueAt: day})} />
             <button className='button'>Add To Do</button>
             <button type='button' className='button button--secondary' onClick={this.handleModalClose.bind(this)}>
               Cancel
