@@ -12,14 +12,30 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'goals.insert'(description, duration) {
+  'goals.insert'(description, duration, durType) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
+    new SimpleSchema({
+      description: {
+        type: String,
+        min: 1
+      },
+      duration: {
+        type: SimpleSchema.Integer,
+        min: 1
+      },
+      durType: {
+        type: String,
+        min: 1
+      }
+    }).validate({ description, duration, durType });
+
     return Goals.insert({
       description,
       duration,
+      durType,
       userId: this.userId,
       createdAt: moment().valueOf()
     });

@@ -5,6 +5,7 @@ export default class GoalListItem extends React.Component {
     return (
       <div>
         <p>{this.props.goal.description}</p>
+        <p>{this.props.goal.duration} {this.props.goal.durType}</p>
       </div>
     );
   }

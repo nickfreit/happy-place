@@ -9,6 +9,7 @@ export class AddGoal extends React.Component {
       isOpen: false,
       description: '',
       duration: '',
+      durationType: 'days',
       error: ''
     }
   }
@@ -18,18 +19,28 @@ export class AddGoal extends React.Component {
   handleModalOpen() {
     this.refs.description.focus();
   }
-  onModalChange(e) {
+  onDescriptionChange(e) {
     this.setState({
       description: e.target.value,
     });
   }
+  onDurationChange(e) {
+    this.setState({
+      duration: e.target.value,
+    });
+  }
+  onDurationTypeChange(e) {
+    e.preventDefault;
+    this.setState({durationType: e.target.value})
+  }
   onModalSubmit(e) {
     const description = this.state.description;
-    const duration = this.state.duration;
+    const duration = Number(this.state.duration);
+    const durType = this.state.durationType;
 
     e.preventDefault();
 
-    Meteor.call('goals.insert', description, duration, (err, res) => {
+    Meteor.call('goals.insert', description, duration, durType, (err, res) => {
       if (!err) {
         this.handleModalClose();
       } else {
@@ -59,8 +70,21 @@ export class AddGoal extends React.Component {
               placeholder="Description"
               ref="description"
               value={this.state.description}
-              onChange={this.onModalChange.bind(this)}
+              onChange={this.onDescriptionChange.bind(this)}
             />
+            <input
+              type='number'
+              placeholder='Duration'
+              ref='duration'
+              value={this.state.duration}
+              onChange={this.onDurationChange.bind(this)}
+            />
+            <select value={this.state.durationType} onChange={this.onDurationTypeChange.bind(this)}>
+              <option value='days'>Days</option>
+              <option value='weeks'>Weeks</option>
+              <option value='months'>Months</option>
+              <option value='years'>Years</option>
+            </select>
             <button className='button'>Add Goal</button>
             <button type='button' className='button button--secondary' onClick={this.handleModalClose.bind(this)}>
               Cancel
