@@ -58,8 +58,8 @@ Meteor.methods({
 
   'goals.update'(_id, task) {
     Goals.update({_id, userId: this.userId}, {
-      $set: {
-        task
+      $addToSet: {
+        tasks: task
       }
     });
   }
