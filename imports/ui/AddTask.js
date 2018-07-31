@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal';
 import {createContainer} from 'meteor/react-meteor-data';
+import uniqid from 'uniqid';
 
 import AddSingleTaskDate from './AddSingleTaskDate';
 import AddRepeatingTaskDate from './AddRepeatingTaskDate';
@@ -42,8 +43,8 @@ export class AddTask extends React.Component {
     const type = this.state.type;
     const repeatType = this.state.repeatType;
     const numInstances = Number(this.state.numInstances);
-    const task = { description, date, type, repeatType, numInstances};
-
+    const _id = uniqid();
+    const task = { _id, description, date, type, repeatType, numInstances};
 
     e.preventDefault();
 
