@@ -62,5 +62,19 @@ Meteor.methods({
         tasks: task
       }
     });
+  },
+
+  'goals.updateTaskComplete'(_id, task_id) {
+    Goals.update(
+      { _id, userId: this.userId, 'tasks._id' : task_id },
+      { $inc: { "tasks.$.complete": 1 } }
+    );
+  },
+
+  'goals.updateTaskSkip'(_id, task_id) {
+    Goals.update(
+      { _id, userId: this.userId, 'tasks._id' : task_id },
+      { $inc: { "tasks.$.skip": 1 } }
+    );
   }
 });

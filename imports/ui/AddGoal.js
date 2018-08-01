@@ -1,5 +1,6 @@
 import React from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
+import {Meteor} from 'meteor/meteor';
 import Modal from 'react-modal';
 
 export class AddGoal extends React.Component {
@@ -40,7 +41,7 @@ export class AddGoal extends React.Component {
 
     e.preventDefault();
 
-    Meteor.call('goals.insert', description, duration, durType, (err, res) => {
+    this.props.meteorCall('goals.insert', description, duration, durType, (err, res) => {
       if (!err) {
         this.handleModalClose();
       } else {

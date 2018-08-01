@@ -1,0 +1,17 @@
+.progress-bar {
+  display: flex;
+  width: 100%;
+  background-color: $gray;
+}
+
+.progress-bar__progress {
+  width: 0%;
+  background-color: $brand-secondary;
+  height: $large-space;
+}
+
+.progress-bar__skipped {
+  width: 0%;
+  background-color: $dark-gray;
+  height: $large-space;
+}

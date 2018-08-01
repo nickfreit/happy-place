@@ -42,13 +42,24 @@ export class AddTask extends React.Component {
     const date = this.state.date;
     const type = this.state.type;
     const repeatType = this.state.repeatType;
-    const numInstances = Number(this.state.numInstances);
+    const numInstances = (type === 'single') ? 1 : Number(this.state.numInstances);
+    const complete = 0;
+    const skip = 0;
     const _id = uniqid();
-    const task = { _id, description, date, type, repeatType, numInstances};
+    const task = {
+      _id,
+       description,
+       date,
+       type,
+       repeatType,
+       complete,
+       skip,
+       numInstances
+     };
 
     e.preventDefault();
 
-    Meteor.call('goals.update', this.props.goal._id, task, (err, res) => {
+    this.props.meteorCall('goals.update', this.props.goal._id, task, (err, res) => {
       if (!err) {
         this.handleModalClose();
       } else {
