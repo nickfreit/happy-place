@@ -4,15 +4,10 @@ import {Meteor} from 'meteor/meteor';
 import {Goals} from '../api/goals';
 
 export default class ProgressBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      totalInstances: 0,
-      skip: 0,
-      complete: 0,
-    }
-  }
   componentDidMount() {
+    this.totalInstances = 0;
+    this.complete = 0;
+    this.skip = 0;
     setTimeout(this.startTracker.bind(this), 0);
   }
 
@@ -22,17 +17,12 @@ export default class ProgressBar extends React.Component {
     this.progressTracker = Tracker.autorun(() => {
       const goal = Goals.findOne({_id: this.props.goal._id, userId: Meteor.userId()});
       if (goal.tasks) {
-        const justInstances = goal.tasks.map((task) => task.numInstances);
-        this.totalInstances = justInstances.reduce((total, instances) => {
-          return total + instances;
-        });
-        const justComplete = goal.tasks.map((task) => task.complete);
-        this.complete = justComplete.reduce((total, complete) => {
-          return total + complete;
-        });
-        const justSkip = goal.tasks.map((task) => task.skip);
-        this.skip = justSkip.reduce((total, skip) => {
-          return total + skip;
+        goal.tasks.map((task) => {
+          if (task.numInstances > task.complete + task.skip) {
+            this.totalInstances += task.numInstances;
+            this.complete += task.complete;
+            this.skip += task.skip;
+          }
         });
       }
       if (this.totalInstances > 0) {

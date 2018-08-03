@@ -13,12 +13,20 @@ export class ControlInstance extends React.Component {
       checked: false
     }
   }
+  componentWillMount() {
+    this.mounted = true;
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
   handleModalClose() {
-    this.setState({
-      isOpen: false,
-      error: '',
-      control: 'complete',
-    });
+    if (this.mounted === true) {
+      this.setState({
+        isOpen: false,
+        error: '',
+        control: 'complete',
+      });
+    }
   }
 
   onModalSubmit(e) {
