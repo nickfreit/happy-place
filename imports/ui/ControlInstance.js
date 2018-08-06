@@ -60,6 +60,9 @@ export class ControlInstance extends React.Component {
     }
   }
   onCheck(e) {
+    if (this.props.done) {
+      return;
+    }
     this.setState({checked: e.target.checked});
     this.props.meteorCall (
       'goals.updateTaskComplete',
@@ -82,20 +85,34 @@ export class ControlInstance extends React.Component {
             <input
               className='checkbox__box'
               type="checkbox"
-              checked={this.state.checked}
+              checked={this.state.checked || this.props.done}
               onChange={this.onCheck.bind(this)} />
             Complete Task
           </label>
         </div>
       );
     } else if (this.props.task.type === 'repeating') {
-      jsx = (
-        <div>
+      let controlButton;
+      if (this.props.done) {
+        controlButton = (
+          <button
+            className='button button--secondary'
+            onClick={() => {}}>
+            Control Instance
+          </button>
+        );
+      } else {
+        controlButton = (
           <button
             className='button'
             onClick={() => this.setState({isOpen: true})}>
             Control Instance
           </button>
+        );
+      }
+      jsx = (
+        <div>
+          {controlButton}
           <Modal
             isOpen={this.state.isOpen}
             contentLabel='Control Instance'

@@ -37,7 +37,9 @@ Meteor.methods({
       duration,
       durType,
       userId: this.userId,
-      createdAt: moment().valueOf()
+      createdAt: moment().valueOf(),
+      showCompleted: false,
+      complete: false
     });
   },
 
@@ -76,5 +78,11 @@ Meteor.methods({
       { _id, userId: this.userId, 'tasks._id' : task_id },
       { $inc: { "tasks.$.skip": 1 } }
     );
+  },
+
+  'goals.updateComplete'(_id, complete) {
+    Goals.update({_id, userId: this.userId}, {
+      $set: {complete}
+    });
   }
 });

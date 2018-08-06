@@ -9,7 +9,11 @@ export class GoalsList extends React.Component {
   render() {
     return (
       <div className='item-list'>
-        {this.props.goals.map((goal) => <GoalListItem key={goal._id} goal={goal}/>)}
+        {this.props.goals.map((goal) => {
+          if (!goal.complete || this.props.showCompleteGoals) {
+            return <GoalListItem key={goal._id} goal={goal}/>;
+          }
+        })}
       </div>
     )
   }

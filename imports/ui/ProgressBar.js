@@ -16,13 +16,14 @@ export default class ProgressBar extends React.Component {
     const elemSkip = document.getElementById(this.props.goal._id + 'skip');
     this.progressTracker = Tracker.autorun(() => {
       const goal = Goals.findOne({_id: this.props.goal._id, userId: Meteor.userId()});
+      this.totalInstances = 0;
+      this.complete = 0;
+      this.skip = 0;
       if (goal.tasks) {
         goal.tasks.map((task) => {
-          if (task.numInstances > task.complete + task.skip) {
-            this.totalInstances += task.numInstances;
-            this.complete += task.complete;
-            this.skip += task.skip;
-          }
+          this.totalInstances += task.numInstances;
+          this.complete += task.complete;
+          this.skip += task.skip;
         });
       }
       if (this.totalInstances > 0) {

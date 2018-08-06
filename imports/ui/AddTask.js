@@ -79,9 +79,18 @@ export class AddTask extends React.Component {
     this.setState({numInstances: e.target.value});
   }
   render() {
+    let className;
+    let onClick;
+    if (this.props.complete) {
+      className = 'button button--secondary';
+      onClick = () => {};
+    } else {
+      className = 'button';
+      onClick = () => this.setState({isOpen: true});
+    }
     return (
       <div>
-        <button className='button' onClick={() => this.setState({isOpen: true})}>+ Task</button>
+        <button className={className} onClick={onClick}>+ Task</button>
         <Modal
           isOpen={this.state.isOpen}
           contentLabel='Add Task'
